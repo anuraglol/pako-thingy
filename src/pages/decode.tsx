@@ -1,14 +1,14 @@
-import InputArea from "@/components/encode/input";
-import Result from "@/components/encode/result";
+import InputArea from "@/components/decode/input";
+import Result from "@/components/decode/result";
 import { MainLayout } from "@/layouts/main";
-import { PayloadToBase64 } from "@/utils/conversions";
+import { Base64ToPayload } from "@/utils/conversions";
 import { Button } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import { NextPage } from "next";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 
-const EncodePage: NextPage = () => {
+const DecodePage: NextPage = () => {
   const [value, setValue] = useState("");
   const [result, setResult] = useState("");
 
@@ -18,7 +18,7 @@ const EncodePage: NextPage = () => {
         toast.error("Please enter a value");
         return;
       }
-      const data = PayloadToBase64(value);
+      const data = Base64ToPayload(value);
       setResult(data);
     },
     onSuccess: () => {},
@@ -49,4 +49,4 @@ const EncodePage: NextPage = () => {
   );
 };
 
-export default EncodePage;
+export default DecodePage;
